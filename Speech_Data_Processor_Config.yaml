@@ -1,0 +1,27 @@
+processors:
+
+  - _target_: sdp.processors.SubMakeLowercase
+    text_key: "text"
+
+
+  - _target_: sdp.processors.SubRegex
+    text_key: "text"
+    regex_params_list:
+      - {pattern: "ş", repl: "ș"}
+      - {pattern: "ţ", repl: "ț"}
+      - {pattern: "[éèêë]", repl: "e"}
+      - {pattern: "[íìï]", repl: "i"}
+      - {pattern: "[óòôö]", repl: "o"}
+      - {pattern: "[úùûü]", repl: "u"}
+      - {pattern: "[áàä]", repl: "a"}
+      - {pattern: "[çćč]", repl: "c"}
+      - {pattern: "[đ]", repl: "d"}
+      - {pattern: "[š]", repl: "ș"}
+      - {pattern: "[^a-zăâîșț\\s\\-]", repl: ""}
+
+
+  - _target_: sdp.processors.DropNonAlphabet
+    text_key: "text"
+    alphabet: "abcdefghijklmnopqrstuvwxyzăâîșț -"
+
+  
